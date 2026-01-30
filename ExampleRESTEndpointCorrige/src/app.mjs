@@ -27,7 +27,10 @@ const allowedOriginsFromEnv = (process.env.ALLOWED_ORIGINS || "")
 // Hardcoded known frontends for this project (Render + Vercel Angular URLs)
 const builtInAllowedOrigins = [
   "https://web-sampler-deploiment.onrender.com",
+  // Ancien domaine Vercel (prévisualisation/projet)
   "https://web-sampler-deploiment-gfy6lsf65-ba-giaccheros-projects.vercel.app",
+  // Nouveau domaine Vercel de production
+  "https://web-sampler-deploiment.vercel.app",
 ];
 
 const allowedOrigins = Array.from(new Set([
