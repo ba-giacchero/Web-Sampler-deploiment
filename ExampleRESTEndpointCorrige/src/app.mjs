@@ -52,6 +52,11 @@ app.use(cors({
       return cb(null, true);
     }
 
+    // Allow any Vercel app (useful for Angular + Sampler fronts)
+    if (/^https:\/\/.*\.vercel\.app$/i.test(origin)) {
+      return cb(null, true);
+    }
+
     // Additionally allow origins explicitly listed in ALLOWED_ORIGINS
     if (allowedOrigins.includes(origin)) {
       return cb(null, true);
