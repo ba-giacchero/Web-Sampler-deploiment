@@ -110,6 +110,8 @@ export class CreateSamplerComponent {
           if (invalidUrl) {
             alert(`Impossible de créer le preset : l'URL "${invalidUrl}" ne pointe pas vers un fichier audio valide sur le serveur.`);
             this.loading = false;
+            // on retourne à la liste des presets
+            this.router.navigate(['/']);
             return;
           }
         }
