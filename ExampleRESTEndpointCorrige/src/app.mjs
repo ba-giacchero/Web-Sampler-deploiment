@@ -24,9 +24,10 @@ const allowedOriginsFromEnv = (process.env.ALLOWED_ORIGINS || "")
   .map((s) => s.trim())
   .filter(Boolean);
 
-// Hardcoded known frontends for this project (Render Angular URL)
+// Hardcoded known frontends for this project (Render + Vercel Angular URLs)
 const builtInAllowedOrigins = [
   "https://web-sampler-deploiment.onrender.com",
+  "https://web-sampler-deploiment-gfy6lsf65-ba-giaccheros-projects.vercel.app",
 ];
 
 const allowedOrigins = Array.from(new Set([
