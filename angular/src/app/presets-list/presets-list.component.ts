@@ -11,8 +11,8 @@ import { PresetsService, Preset } from '../presets.service';
   styleUrls: ['./presets-list.component.css']
 })
 export class PresetsListComponent implements OnInit {
-  presets: Preset[] = [];
-  loading = false;
+  // null = en cours de chargement, [] ou plus = chargé
+  presets: Preset[] | null = null;
   error: string | null = null;
 
   constructor(private svc: PresetsService) {}
@@ -23,18 +23,17 @@ export class PresetsListComponent implements OnInit {
   // fonction de chargement de la liste des presets depuis le back end
   // appelé lors de l'initialisation du composant et après chaque modification
   load() {
-    this.loading = true;
     this.error = null;
+    this.presets = null;
     this.svc.list().subscribe({
       next: (res) => {
         console.log('Presets chargés depuis API', res);
         this.presets = res || [];
-        this.loading = false;
       },
       error: (err) => {
         console.error('Erreur lors du chargement des presets', err);
         this.error = String(err?.message || err);
-        this.loading = false;
+        this.presets = [];
       }
     });
   }
