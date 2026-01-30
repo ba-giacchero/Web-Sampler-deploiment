@@ -18,10 +18,21 @@ export const app = express();
 app.use(express.json({ limit: "2mb" }));
 
 // CORS configuration: allow localhost (dev) + optional list from ALLOWED_ORIGINS
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
+// and also a small built-in list of known frontends (Angular app, etc.).
+const allowedOriginsFromEnv = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
+
+// Hardcoded known frontends for this project (Render Angular URL)
+const builtInAllowedOrigins = [
+  "https://web-sampler-deploiment.onrender.com",
+];
+
+const allowedOrigins = Array.from(new Set([
+  ...allowedOriginsFromEnv,
+  ...builtInAllowedOrigins,
+]));
 
 app.use(cors({
   origin: (origin, cb) => {
