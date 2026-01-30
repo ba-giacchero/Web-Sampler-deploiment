@@ -1,6 +1,8 @@
 <div class="example-flex-container">
   <div *ngIf="error" style="color:red">{{error}}</div>
 
+  <div class="muted">Nombre de presets chargés : {{ (presets || []).length }}</div>
+
   <section *ngFor="let p of (presets || [])" class="preset-row">
     <div class="example-label">{{ p.name }}</div>
     <div class="example-button-row">
