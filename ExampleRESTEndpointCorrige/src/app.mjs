@@ -29,8 +29,10 @@ const builtInAllowedOrigins = [
   "https://web-sampler-deploiment.onrender.com",
   // Ancien domaine Vercel (prévisualisation/projet)
   "https://web-sampler-deploiment-gfy6lsf65-ba-giaccheros-projects.vercel.app",
-  // Nouveau domaine Vercel de production
+  // Domaines Vercel de production possibles (orthographes différentes)
   "https://web-sampler-deploiment.vercel.app",
+  "https://web-sampler-deploiement.vercel.app",
+  "https://web-sampler-deploioment.vercel.app",
 ];
 
 const allowedOrigins = Array.from(new Set([
