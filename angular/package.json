@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "ng serve --open",
-    "build": "ng build",
+    "start": "node ./node_modules/@angular/cli/bin/ng.js serve --open",
+    "build": "node ./node_modules/@angular/cli/bin/ng.js build",
     "test": "ng test"
   },
   "dependencies": {
