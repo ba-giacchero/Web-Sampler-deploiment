@@ -1,0 +1,15 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2022", "dom"]
+  }
+}
