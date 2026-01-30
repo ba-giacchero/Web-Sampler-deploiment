@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { finalize } from 'rxjs';
 import { PresetsService, Preset } from '../presets.service';
 
 @Component({
@@ -26,24 +25,18 @@ export class PresetsListComponent implements OnInit {
   load() {
     this.loading = true;
     this.error = null;
-    this.svc
-      .list()
-      .pipe(
-        finalize(() => {
-          // Toujours désactiver le message "Loading" quand la requête se termine
-          this.loading = false;
-        })
-      )
-      .subscribe({
-        next: (res) => {
-          console.log('Presets chargés depuis API', res);
-          this.presets = res || [];
-        },
-        error: (err) => {
-          console.error('Erreur lors du chargement des presets', err);
-          this.error = String(err?.message || err);
-        }
-      });
+    this.svc.list().subscribe({
+      next: (res) => {
+        console.log('Presets chargés depuis API', res);
+        this.presets = res || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Erreur lors du chargement des presets', err);
+        this.error = String(err?.message || err);
+        this.loading = false;
+      }
+    });
   }
   // fonction de renommage de preset
   async rename(p: Preset) {
