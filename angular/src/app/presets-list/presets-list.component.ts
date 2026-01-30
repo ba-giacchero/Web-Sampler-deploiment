@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PresetsService, Preset } from '../presets.service';
@@ -15,7 +15,7 @@ export class PresetsListComponent implements OnInit {
   presets: Preset[] | null = null;
   error: string | null = null;
 
-  constructor(private svc: PresetsService) {}
+  constructor(private svc: PresetsService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.load();
@@ -29,11 +29,14 @@ export class PresetsListComponent implements OnInit {
       next: (res) => {
         console.log('Presets chargés depuis API', res);
         this.presets = res || [];
+        // Forcer la détection de changements au cas où Zone.js ne déclenche pas correctement
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Erreur lors du chargement des presets', err);
         this.error = String(err?.message || err);
         this.presets = [];
+        this.cdr.detectChanges();
       }
     });
   }
