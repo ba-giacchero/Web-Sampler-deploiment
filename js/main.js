@@ -13,7 +13,8 @@ import { initRecorder } from './recorder.js';
 import { initUIPresets } from './ui-presets.js';
 
 // ====== CONFIG ORIGINS ======
-const API_BASE = 'http://localhost:3000';               // <- API + fichiers audio
+// URL de l'API déployée (Express sur Render)
+const API_BASE = 'https://web-sampler-cours.onrender.com';               // <- API + fichiers audio
 const PRESETS_URL = `${API_BASE}/api/presets`;
 
 // Web Audio
